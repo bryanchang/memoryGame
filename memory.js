@@ -49,11 +49,16 @@ $(document).ready(function() {
 
   $('.tiles').on('click', function(){
     var revealed = $('.revealed');
+    $(this).children().addClass('revealed');
     if (revealed.length === 0){
       console.log($(this).children().addClass('revealed'));
     }
-    else if ( revealed.length === 1){
+    else if (revealed.length){
+      $(this).children().addClass('revealed');
+
+
       if(revealed[0].innerText === $(this).children().html()){
+        console.log('match checking');
         revealed.addClass('matched');
         console.log(revealed[0]);
         console.log($(this).children().addClass('matched'));
@@ -63,8 +68,11 @@ $(document).ready(function() {
         $(this).children().unbind('click');
       }
       else{
-        revealed.removeClass('revealed');
+        console.log('not match');
+          if (revealed.length == 2) {
         $(this).children().removeClass('revealed');
+        revealed.removeClass('revealed');
+        }
       }
     }
   });
